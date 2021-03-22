@@ -1,0 +1,8 @@
+Input:
+A line with bracket sequence fragment containing only bracket symbols "[]{}()" in different combinations.
+
+String length limit: 10^6 symbols.
+
+Task:
+If it's possible to complete the given sequence from both sides to get a valid one - print a minimal valid sequence generated from input.
+Otherwise print "IMPOSSIBLE".
