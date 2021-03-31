@@ -21,21 +21,21 @@ def findcenter(line):
     If there is only one such bracket - returns it's position and 1 (if it's a right bracket) or -1.
     Otherwise returns -1 for both position and type."""
     for i in [")(", ")[", "){", "][", "](", "]{", "}{", "}(", "}["]:
-        pos = line.find(i)
-        if pos > -1:
-            return [pos, 2]
+        position = line.find(i)
+        if position > -1:
+            return position, 2
 
-    searchr = max([line.rfind(")"), line.rfind("]"), line.rfind("}")])
-    if searchr > -1:
-        return [searchr, 1]
+    rightsearch = max([line.rfind(")"), line.rfind("]"), line.rfind("}")])
+    if rightsearch > -1:
+        return rightsearch, 1
 
     found = []
     for i in ["(", "[", "{"]:
         if line.find(i) > -1:
             found.append(line.find(i))
         if found:
-            return [min[found], -1]
-    return [-1, -1]
+            return min(found), -1
+    return -1, -1
 
 
 def build(line):
@@ -65,8 +65,8 @@ elif "(]" in inputstring \
     print("IMPOSSIBLE")
 else:
     new = pairdelete(inputstring)
-    [split, sign] = findcenter(new)
-    if split > -1:
+    splitter, sign = findcenter(new)
+    if splitter > -1:
         if sign == -1:
             left = ""
             right = build(new)
@@ -74,8 +74,8 @@ else:
             left = build(new)
             right = ""
         else:                               # we need to complete input with 2 strings from each end
-            left = build(new[:split + 1])
-            right = build(new[split + 1:])
+            left = build(new[:splitter + 1])
+            right = build(new[splitter + 1:])
         print(left + inputstring + right)
 
 """
